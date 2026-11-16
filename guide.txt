@@ -1,0 +1,39 @@
+medical-voice-agent/
+│
+├── app.py
+├── .env
+├── dataset.pdf
+└── chroma_db/       (automatically create hoga)
+
+
+py -3.11 -m venv venv
+.\venv\Scripts\Activate.ps1
+python --version
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\venv\Scripts\Activate.ps1
+
+python -m pip install --upgrade pip
+pip install groq edge-tts python-dotenv chromadb sentence-transformers pypdf sounddevice soundfile numpy av
+
+
+GROQ_API_KEY=YOUR_NEW_GROQ_API_KEY
+
+GROQ_MODEL=openai/gpt-oss-120b
+GROQ_STT_MODEL=whisper-large-v3-turbo
+
+URDU_VOICE=ur-PK-AsadNeural
+ENGLISH_VOICE=en-US-AriaNeural
+
+PDF_PATH=dataset.pdf
+CHROMA_DB_PATH=chroma_db
+
+CHUNK_SIZE=900
+CHUNK_OVERLAP=150
+TOP_K=5
+
+
+.\venv\Scripts\Activate.ps1
+python app.py
+
+python app.py --rebuild-rag
